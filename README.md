@@ -24,6 +24,8 @@ Be sure you have the following installed on your development machine:
 
 + Django==1.11.11
 + django-crispy-forms==1.7.2
++ passlib==1.7.1
++ Pillow==5.0.0
 
 ## Installation
 
