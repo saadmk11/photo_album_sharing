@@ -1,0 +1,22 @@
+{% extends "album/base.html" %}
+
+{% block content %}
+<h2>Password Varification</h2>
+<p>Please Verify using password to see the Album.</p>
+<hr>
+{% if messages %}
+<ul class="messages alert alert-danger">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<form method="POST" action="">
+    {% csrf_token %}
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" name="password" placeholder="Password">
+  </div>
+  <button type="submit" class="btn btn-primary">Login</button>
+</form>
+{% endblock content %}

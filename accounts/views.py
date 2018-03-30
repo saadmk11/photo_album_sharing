@@ -9,7 +9,6 @@ def login_view(request):
     if request.user.is_authenticated():
         return redirect('album:index')
     else:
-
         form = UserLoginForm(request.POST or None)
 
         if form.is_valid():
@@ -39,7 +38,7 @@ def logout_view(request):
 
 
 def register_view(request):
-    '''Users will Create an Account.'''
+    '''Create an Account.'''
     if request.user.is_authenticated():
         return redirect('album:index')
     else:

@@ -1,0 +1,15 @@
+{% extends 'album/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<h1>{{ title }}</h1>
+<hr>
+<form method="POST" action="" enctype='multipart/form-data'>
+    {% csrf_token %}
+    {{ formset|crispy }}
+    <br>
+    <input class="btn btn-success" type="submit" value='Submit'>
+</form>
+{% endblock content %}

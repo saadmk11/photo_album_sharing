@@ -1,0 +1,23 @@
+{% extends "album/base.html" %}
+
+{% block content %}
+<h1>Share {{ album.title }}</h1>
+<hr>
+<form>
+  <div class="form-group row">
+    <label for="colFormLabel" class="col-sm-2 col-form-label">Album URL</label>
+    <div class="col-sm-10">
+      <input value="{{ share_url }}" type="text" class="form-control" id="colFormLabel" placeholder="col-form-label">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="colFormLabel" class="col-sm-2 col-form-label">Password</label>
+    <div class="col-sm-10">
+      <input value="{{ password }}" type="text" class="form-control" id="colFormLabel" placeholder="col-form-label">
+    </div>
+  </div>
+</form>
+<hr>
+<a class="btn btn-primary btn-sm" href="{{ album.get_absolute_url }}" role="button">Go Back</a>
+{% endblock content %}
+

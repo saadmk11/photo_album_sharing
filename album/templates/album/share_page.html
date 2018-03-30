@@ -1,0 +1,64 @@
+{% extends "album/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<h2>{{ album.title }}</h2>
+<div class="row">
+  <h6 class="col-sm-9">Created on {{ album.timestamp }}</h6>
+</div>
+<h4><span class="badge badge-success">Rating: 
+{% if album.get_ratings %}
+    {{ album.get_ratings|floatformat:1 }}
+{% else %}
+    None
+{% endif %}
+</span></h4>
+<hr>
+<p>{{ album.description }}</p>
+<hr>
+<h2>Photos</h2>
+<hr>
+
+<div class="row">
+{% for photo in photos %}
+<div class="card-group">
+  <div class="card" style="width: 30rem; margin: 35px;">
+    <img class="card-img-top" src="{{ photo.image.url }}" alt="Card image cap">
+    <hr>
+    <div class="card-body" style="padding: 5px;">
+      <h6 class="card-title">{{ photo.title }}</h6>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Uploaded {{ photo.timestamp|timesince }} ago</small>
+    </div>
+  </div>
+</div>
+{% endfor %}
+</div>
+<hr>
+
+<h2>Comments</h2>
+<hr>
+<form method="POST" action="">
+    {% csrf_token %}
+    {{ comment_form|crispy }}
+    <br>
+    <input class="btn btn-success" type="submit" value='Submit'>
+</form>
+<hr>
+<div class="list-group">
+  {% for comment in comments %}
+    <div class="card">
+      <h5 class="card-header">{{ comment.name }}<small style="float: right;">{{ comment.timestamp|timesince }} ago</small></h5>
+      <div class="card-body">
+        <p class="card-text">{{ comment.text }}</p>
+        <span class="badge badge-success">Rating: {{ comment.rating }}</span>
+      </div>
+    </div>
+    <hr>
+  {% endfor %}
+</div>
+
+{% endblock content %}

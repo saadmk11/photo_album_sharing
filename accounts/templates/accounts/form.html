@@ -2,7 +2,6 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="container">
 <h2>{{ title }}</h2>
 <hr>
 <form method="POST" action="">
@@ -16,5 +15,4 @@
     Have an Account <a href="{% url 'accounts:login' %}">Login Here.</a>
     {% endif %}
 </form>
-</div>
 {% endblock content %}

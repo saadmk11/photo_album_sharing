@@ -1,0 +1,21 @@
+{% extends 'album/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<h1>{{ title }}</h1>
+<hr>
+<form method="POST" action="" enctype='multipart/form-data'>
+    {% csrf_token %}
+    {{ album_form|crispy }}
+    <hr>
+    <h2>Upload Photos</h2>
+    <p>* Please Upload Atleast 1 Image for The Album<br>
+       * You can Upload more Photos Later.</p>
+    <hr>
+    {{ formset|crispy }}
+    <br>
+    <input class="btn btn-success" type="submit" value='Submit'>
+</form>
+{% endblock content %}
