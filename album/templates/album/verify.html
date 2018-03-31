@@ -1,5 +1,7 @@
 {% extends "album/base.html" %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
 <h2>Password Varification</h2>
 <p>Please Verify using password to see the Album.</p>
@@ -14,8 +16,7 @@
 <form method="POST" action="">
     {% csrf_token %}
   <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" name="password" placeholder="Password">
+    {{ pass_form|crispy }}
   </div>
   <button type="submit" class="btn btn-primary">Login</button>
 </form>

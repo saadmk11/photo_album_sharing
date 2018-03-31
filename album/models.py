@@ -43,7 +43,9 @@ class AlbumCredential(models.Model):
         Album,
         on_delete=models.CASCADE
     )
-    identifier = models.UUIDField(default=uuid.uuid4, editable=False)
+    identifier = models.CharField(
+        max_length=100, unique=True,
+        default=uuid.uuid4, editable=False)
     password = models.CharField(max_length=256, blank=True, null=True)
 
     def verify_password(self, password):

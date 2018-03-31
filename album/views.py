@@ -30,6 +30,7 @@ def album_create(request):
         PhotoForm, extra=4,
         max_num=10, validate_max=True,
         min_num=1, validate_min=True)
+
     if request.method == 'POST':
         album_form = AlbumForm(request.POST)
         formset = PhotoFormSet(request.POST, request.FILES)
@@ -181,20 +182,21 @@ def album_viewer_page(request, identifier):
     # if there is no session identifier or the identifier doen't match
     # the album_cred identifier show the password input form.
     if (not session_identifier
-            or session_identifier != str(album_cred.identifier)):
+            or session_identifier != album_cred.identifier):
 
-        password_form = PasswordForm(request.POST or None)
+        pass_form = PasswordForm(request.POST or None)
 
-        if password_form.is_valid():
-            password = password_form.cleaned_data.get('password')
+        if pass_form.is_valid():
+            password = pass_form.cleaned_data.get('password')
             # verify password
             verified = album_cred.verify_password(password)
 
             if verified:
                 # if password verified set session variable.
-                request.session['identifier'] = str(album_cred.identifier)
+                request.session['identifier'] = album_cred.identifier
                 return redirect(
-                    'album:album_viewer_page', identifier=album_cred.identifier)
+                    'album:album_viewer_page',
+                    identifier=album_cred.identifier)
             else:
                 messages.error(request, "Password Doesn't Match.")
     else:
@@ -222,4 +224,4 @@ def album_viewer_page(request, identifier):
 
         return render(request, "album/share_page.html", context)
 
-    return render(request, "album/viewer_varification.html", {})
+    return render(request, "album/verify.html", {'pass_form': pass_form})
