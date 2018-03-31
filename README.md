@@ -43,7 +43,7 @@ mkvirtualenv -p python3 {{project_name}}   # create and activate environment
 workon {{project_name}}   # reactivate existing environment
 ```
 
-Clone GitLab Project,
+Clone Github Project,
 ```bash
 git clone https://github.com/saadmk11/photo_album_sharing.git
 cd photo_album_sharing
